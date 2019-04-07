@@ -1,5 +1,6 @@
 package br.com.todolist.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -7,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 public class UserDTO {
 
 	private String name;
-	private String login;
+	private String email;
 	private String password;
 	
 	@NotNull(message = "O nome do usuário não pode ser vazio.")
@@ -18,13 +19,14 @@ public class UserDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@NotNull(message = "O login do usuário não pode ser vazio.")
-	@Length(min = 5, message = "O login não pode conter menos que 5 caracteres.")
-	public String getLogin() {
-		return login;
+
+	@Email
+	@NotNull(message = "O email do usuário não pode ser vazio.")
+	public String getEmail() {
+		return email;
 	}
-	public void setLogin(String login) {
-		this.login = login;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	@NotNull(message = "A senha do usuário não pode ser vazia.")
 	@Length(min = 5, max = 25, message = "Sua senha deve conter de 5 a 25 caracteres.") 
