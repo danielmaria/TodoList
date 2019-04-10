@@ -1,7 +1,6 @@
-package br.com.todolist.security.service;
+package br.com.todolist.service;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -11,9 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.todolist.dto.UserDTO;
-import br.com.todolist.security.entity.User;
-import br.com.todolist.security.repository.UserRepository;
-import br.com.todolist.security.service.interfaces.IUserService;
+import br.com.todolist.entity.User;
+import br.com.todolist.repository.UserRepository;
+import br.com.todolist.service.interfaces.IUserService;
 import br.com.todolist.utils.Response;
 
 @Service
@@ -31,15 +30,15 @@ public class UserService implements IUserService {
 		try {
 			userRepository.save(user);
 		} catch (DataIntegrityViolationException e) {
-			response.setErrors(Arrays.asList("Já existe um usuário com este mesmo login. Utilize outro."));
+			response.setErrors(Arrays.asList("Já existe um usuário com este mesmo e-mail. Utilize outro."));
 			return response;
 		}
 		response.setData(userDTO);
 		return response;
 	}
 	
-	public Optional<User> findByEmail(String email) {
-		return Optional.ofNullable(userRepository.findByEmail(email));
+	public User findByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 	
 	

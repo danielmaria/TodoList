@@ -10,6 +10,7 @@ public class UserDTO {
 	private String name;
 	private String email;
 	private String password;
+	private String role;
 	
 	@NotNull(message = "O nome do usuário não pode ser vazio.")
 	@Length(min = 5, message = "O nome não pode conter menos que 5 caracteres.")
@@ -35,6 +36,12 @@ public class UserDTO {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	

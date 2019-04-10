@@ -1,15 +1,15 @@
 package br.com.todolist.security.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
+import br.com.todolist.entity.User;
 import br.com.todolist.security.JwtUserFactory;
-import br.com.todolist.security.entity.User;
+import br.com.todolist.service.UserService;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
@@ -19,10 +19,10 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<User> funcionario = usuarioService.findByEmail(username);
+		User funcionario = usuarioService.findByEmail(username);
 
-		if (funcionario.isPresent()) {
-			return JwtUserFactory.create(funcionario.get());
+		if (!ObjectUtils.isEmpty(funcionario)) {
+			return JwtUserFactory.create(funcionario);
 		}
 
 		throw new UsernameNotFoundException("Email não encontrado.");

@@ -1,4 +1,4 @@
-package br.com.todolist.swagger;
+package br.com.todolist.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

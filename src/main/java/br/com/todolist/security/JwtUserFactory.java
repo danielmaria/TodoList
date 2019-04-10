@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import br.com.todolist.security.entity.User;
+import br.com.todolist.entity.User;
 import br.com.todolist.security.enums.RoleEnum;
 
 public class JwtUserFactory {
