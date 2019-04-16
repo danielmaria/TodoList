@@ -11,6 +11,7 @@ public class UserDTO {
 	private String email;
 	private String password;
 	private String role;
+	private UserDTO userCreator;
 	
 	@NotNull(message = "O nome do usuário não pode ser vazio.")
 	@Length(min = 5, message = "O nome não pode conter menos que 5 caracteres.")
@@ -42,6 +43,12 @@ public class UserDTO {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public UserDTO getUserCreator() {
+		return userCreator;
+	}
+	public void setUserCreator(UserDTO userCreator) {
+		this.userCreator = userCreator;
 	}
 	
 	
