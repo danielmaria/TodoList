@@ -25,9 +25,9 @@ public class UserService implements IUserService {
 	private UserRepository userRepository;
 
 	public Response<UserDTO> createUser(@Valid UserDTO userDTO) {
-		Response<UserDTO> response = new Response<UserDTO>();
+		Response<UserDTO> response = new Response<>();
 		if(verifyNewUserIsAdminAndUserCreatorIsNotAdmin(userDTO)) {
-			response.setErrors(asList("Apenas administradores podem criar outros usuários administradores."));
+			response.addError("Apenas administradores podem criar outros usuários administradores.");
 			return response;
 		}
 		
@@ -36,7 +36,7 @@ public class UserService implements IUserService {
 		try {
 			userRepository.save(user);
 		} catch (DataIntegrityViolationException e) {
-			response.setErrors(asList("Já existe um usuário com este mesmo e-mail. Utilize outro."));
+			response.addError("Já existe um usuário com este mesmo e-mail. Utilize outro.");
 			return response;
 		}
 		response.setData(userDTO);
@@ -44,8 +44,8 @@ public class UserService implements IUserService {
 	}
 
 	private boolean verifyNewUserIsAdminAndUserCreatorIsNotAdmin(UserDTO userDTO) {
-		return (userDTO.getRole().equals(ROLE_ADMIN.name()) && ObjectUtils.isEmpty(userDTO.getUserCreator())) 
-				|| (userDTO.getRole().equals(ROLE_ADMIN.name()) && !ROLE_ADMIN.name().equals(userDTO.getUserCreator().getRole()));
+		return (ROLE_ADMIN.name().equals(userDTO.getRole()) && ObjectUtils.isEmpty(userDTO.getUserCreator()))
+				|| (ROLE_ADMIN.name().equals(userDTO.getRole()) && !ROLE_ADMIN.name().equals(userDTO.getUserCreator().getRole()));
 	}
 	
 	public User findByEmail(String email) {

@@ -46,6 +46,7 @@ public class StickyNote implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@ManyToOne(cascade = CascadeType.DETACH)
 	public User getUserOwner() {
 		return userOwner;
 	}

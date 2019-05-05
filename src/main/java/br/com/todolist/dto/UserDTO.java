@@ -7,12 +7,19 @@ import org.hibernate.validator.constraints.Length;
 
 public class UserDTO {
 
+	private Long id;
 	private String name;
 	private String email;
 	private String password;
 	private String role;
 	private UserDTO userCreator;
 	
+ 	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	@NotNull(message = "O nome do usuário não pode ser vazio.")
 	@Length(min = 5, message = "O nome não pode conter menos que 5 caracteres.")
 	public String getName() {
