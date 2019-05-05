@@ -19,6 +19,7 @@ public class StickyNoteDTO  {
 	public void setUserOwner(UserDTO userOwner) {
 		this.userOwner = userOwner;
 	}
+
 	@NotNull(message = "O usuário criador da nota deve ser informado.")
 	public UserDTO getUserCreated() {
 		return userCreated;
@@ -26,12 +27,14 @@ public class StickyNoteDTO  {
 	public void setUserCreated(UserDTO userCreated) {
 		this.userCreated = userCreated;
 	}
+
 	public Date getDtToFinish() {
 		return dtToFinish;
 	}
 	public void setDtToFinish(Date dtToFinish) {
 		this.dtToFinish = dtToFinish;
 	}
+
 	@NotNull(message = "A mensagem da nota não pode ser vazia.")
 	public String getNote() {
 		return note;
@@ -39,6 +42,7 @@ public class StickyNoteDTO  {
 	public void setNote(String note) {
 		this.note = note;
 	}
+
 	public Date getDtDone() {
 		return dtDone;
 	}

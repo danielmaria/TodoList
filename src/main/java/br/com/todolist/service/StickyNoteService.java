@@ -19,7 +19,7 @@ public class StickyNoteService implements IStickyNoteService {
 	private StickyNoteRepository stickyNoteRepository;
 
 	public Response<StickyNoteDTO> createStickyNote(@Valid StickyNoteDTO dto) {
-		Response<StickyNoteDTO> response = new Response<StickyNoteDTO>();
+		Response<StickyNoteDTO> response = new Response<>();
 		StickyNote stick = StickyNoteBuilder.newStickNote()
 							.withNote(dto.getNote())
 							.wasCreatedBy(dto.getUserCreated().getId())

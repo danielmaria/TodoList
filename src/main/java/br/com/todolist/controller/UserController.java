@@ -25,9 +25,7 @@ public class UserController {
 	@PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Response<UserDTO>> createUser(@Valid @RequestBody UserDTO user, BindingResult result) {
 		if(result.hasErrors()) {
-			Response<UserDTO> response = new Response<UserDTO>();
-			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
-			return ResponseEntity.badRequest().body(response);
+			return new Response<UserDTO>().returnAllErrors(result);
 		}
 		Response<UserDTO> createUserResponse = userService.createUser(user);
 		if(createUserResponse.hasErrors()) {
@@ -35,5 +33,7 @@ public class UserController {
 		}
 		return ResponseEntity.ok(createUserResponse);
 	}
-	
+
+
+
 }

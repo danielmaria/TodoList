@@ -17,9 +17,7 @@ public class UserDTO {
  	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 	@NotNull(message = "O nome do usuário não pode ser vazio.")
 	@Length(min = 5, message = "O nome não pode conter menos que 5 caracteres.")
 	public String getName() {
@@ -37,6 +35,7 @@ public class UserDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	@NotNull(message = "A senha do usuário não pode ser vazia.")
 	@Length(min = 5, max = 25, message = "Sua senha deve conter de 5 a 25 caracteres.") 
 	public String getPassword() {
@@ -45,12 +44,14 @@ public class UserDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
 		this.role = role;
 	}
+
 	public UserDTO getUserCreator() {
 		return userCreator;
 	}

@@ -23,9 +23,7 @@ public class StickyNoteController {
 	@PostMapping
 	public ResponseEntity<Response<StickyNoteDTO>> createStickyNote(@Valid @RequestBody StickyNoteDTO stickyNote, BindingResult result) {
 		if(result.hasErrors()) {
-			Response<StickyNoteDTO> response = new Response<StickyNoteDTO>();
-			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
-			return ResponseEntity.badRequest().body(response);
+			return new Response<StickyNoteDTO>().returnAllErrors(result);
 		}
 		
 		Response<StickyNoteDTO> response = stickyNoteService.createStickyNote(stickyNote);
